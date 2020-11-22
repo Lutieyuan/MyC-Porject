@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tieyuan/Documents/Code/C++/Project/AddressBook/src/main.cpp
+iostream
+-
+unistd.h
+-
+string
+-
+stdlib.h
+-
+cstdio
+-
+
