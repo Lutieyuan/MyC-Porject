@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMyLib.a  CMakeFiles/MyLib.dir/boss.cpp.o CMakeFiles/MyLib.dir/employeeManager.cpp.o CMakeFiles/MyLib.dir/manager.cpp.o CMakeFiles/MyLib.dir/worker.cpp.o
+/usr/bin/ranlib libMyLib.a

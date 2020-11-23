@@ -1,7 +1,9 @@
-#include "employee.h"
 #include <stdlib.h>
+
 #include <iostream>
+
 #include "boss.h"
+#include "employee.h"
 #include "employeeManager.h"
 #include "manager.h"
 #include "worker.h"
@@ -10,18 +12,18 @@ using namespace std;
 
 int main() {
   // test code
-  employee *employee = NULL;
-  employee = new Worker(1, "Tom", 1);
-  employee->ShowInfo();
-  delete employee;
+  // employee *employee = NULL;
+  // employee = new Worker(1, "Tom", 1);
+  // employee->ShowInfo();
+  // delete employee;
 
-  employee = new Manager(2, "Jack", 2);
-  employee->ShowInfo();
-  delete employee;
+  // employee = new Manager(2, "Jack", 2);
+  // employee->ShowInfo();
+  // delete employee;
 
-  employee = new Boss(3, "Peter", 3);
-  employee->ShowInfo();
-  delete employee;
+  // employee = new Boss(3, "Peter", 3);
+  // employee->ShowInfo();
+  // delete employee;
 
   EmployeeManager em;
 
@@ -35,6 +37,7 @@ int main() {
         em.ExitSystem();
         break;
       case 1:  // add employee
+        em.Add_Emp();
         break;
       case 2:  // show employee
         break;

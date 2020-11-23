@@ -3,7 +3,7 @@
 Boss::Boss(int ID, string name, int DepID) {
   this->m_ID = ID;
   this->m_name = name;
-  this->m_depID = DepID;
+  this->m_DepID = DepID;
 }
 
 void Boss::ShowInfo() {

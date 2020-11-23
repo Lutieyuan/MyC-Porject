@@ -1,0 +1,8 @@
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/myLib/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/myLib/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/myLib/CMakeFiles/MyLib.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/src/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/src/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/EmployeeManageSystem/build/src/CMakeFiles/EmployeeManageSystem.dir

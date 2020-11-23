@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/EmployeeManageSystem.dir/employeeManageSystem.cpp.o  -o ../bin/EmployeeManageSystem ../myLib/libMyLib.a 
