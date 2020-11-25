@@ -1,8 +1,41 @@
 #include "employeeManager.h"
 
 EmployeeManager::EmployeeManager() {
-  this->m_EmpNum = 0;
-  this->m_EmpArray = NULL;
+  // 1. file does not exist
+  ifstream ifs;
+  ifs.open(FILENAME, ios::in);
+
+  if (ifs.fail()) {
+    // cout << "file does not exit" << endl;
+    this->m_EmpNum = 0;
+    this->m_EmpArray = NULL;
+    this->m_FileIsEmpty = true;
+    ifs.close();
+    return;
+  }
+  // 2. file exits, but empty
+  char ch;
+  ifs >> ch;  // read a char
+  if (ifs.eof()) {
+    cout << "The file is empty" << endl;
+    this->m_EmpNum = 0;
+    this->m_EmpArray = NULL;
+    this->m_FileIsEmpty = true;
+    ifs.close();
+    return;
+  }
+  // 3. file exits, data exits
+  size_t num = this->get_EmpNum();
+  cout << "The number of employeese: " << num << endl;
+  this->m_EmpNum = num;
+  // establish the memory (equals to declare an array)
+  this->m_EmpArray = new Employee*[num];
+  // store the information of the file into the array
+  this->init_Emp();
+  // for (size_t i = 0; i < num; i++) {
+  //   cout << this->m_EmpArray[i]->m_ID << " " << this->m_EmpArray[i]->m_name
+  //        << " " << this->m_EmpArray[i]->m_DepID << endl;
+  // }
 }
 
 void EmployeeManager::ShowMeun() {
@@ -28,7 +61,12 @@ void EmployeeManager::ExitSystem() {
   exit(0);  // exit system
 }
 
-EmployeeManager::~EmployeeManager() {}
+EmployeeManager::~EmployeeManager() {
+  if (this->m_EmpArray != NULL) {
+    delete[] this->m_EmpArray;
+    this->m_EmpArray = NULL;
+  }
+}
 
 void EmployeeManager::Add_Emp() {
   cout << "Please enter the number of employee: ";
@@ -61,17 +99,20 @@ void EmployeeManager::Add_Emp() {
       cout << "2. Manager" << endl;
       cout << "3. Boss" << endl;
       cin >> DepSelect;
-
       Employee* employee = NULL;
+
       switch (DepSelect) {
         case 1: {
           employee = new Worker(ID, name, 1);
+          break;
         }
         case 2: {
           employee = new Manager(ID, name, 2);
+          break;
         }
         case 3: {
           employee = new Boss(ID, name, 3);
+          break;
         }
         default:
           break;
@@ -84,7 +125,10 @@ void EmployeeManager::Add_Emp() {
     // update the arry
     this->m_EmpArray = newSpace;
     this->m_EmpNum = newSize;
+    this->m_FileIsEmpty = false;  // update the file state
     cout << "Add " << addNum << " employeese success" << endl;
+    // save the information into txt
+    this->save();
 
   } else {
     cout << "Wrong number" << endl;
@@ -93,4 +137,61 @@ void EmployeeManager::Add_Emp() {
   string a;
   cin >> a;
   system("clear");
+}
+
+void EmployeeManager::save() {
+  ofstream ofs;
+  ofs.open(FILENAME, ios::out);
+  if (ofs.fail()) {
+    cout << "Open file " << FILENAME << "failed" << endl;
+    return;
+  }
+  // write each employee into the file
+  for (size_t i = 0; i < this->m_EmpNum; i++) {
+    ofs << this->m_EmpArray[i]->m_ID << " " << this->m_EmpArray[i]->m_name
+        << " " << this->m_EmpArray[i]->m_DepID << endl;
+  }
+  ofs.close();
+}
+
+size_t EmployeeManager::get_EmpNum() {
+  ifstream ifs;
+  ifs.open(FILENAME, ios::in);
+
+  int ID;
+  std::string name;
+  int DepID;
+  size_t num = 0;
+  while (ifs >> ID && ifs >> name && ifs >> DepID) {
+    num++;
+  }
+  return num;
+};
+
+void EmployeeManager::init_Emp() {
+  ifstream ifs;
+  ifs.open(FILENAME, ios::in);
+
+  std::string name;
+  int ID, DepID;
+  int index = 0;
+  while (ifs >> ID && ifs >> name && ifs >> DepID) {
+    Employee* employee = NULL;
+    switch (DepID) {
+      case 1:
+        employee = new Worker(ID, name, DepID);
+        break;
+      case 2:
+        employee = new Manager(ID, name, DepID);
+        break;
+      case 3:
+        employee = new Boss(ID, name, DepID);
+        break;
+      default:
+        break;
+    }
+    this->m_EmpArray[index] = employee;
+    index++;
+  }
+  ifs.close();
 }
