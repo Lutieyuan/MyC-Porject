@@ -26,7 +26,7 @@ EmployeeManager::EmployeeManager() {
   }
   // 3. file exits, data exits
   size_t num = this->get_EmpNum();
-  cout << "The number of employeese: " << num << endl;
+  // cout << "The number of employeese: " << num << endl;
   this->m_EmpNum = num;
   this->m_FileIsEmpty = false;
   // establish the memory (equals to declare an array)
@@ -211,3 +211,44 @@ void EmployeeManager::Show_Emp() {
   cin >> a;
   system("clear");
 }
+
+// delete the Emp by ID
+void EmployeeManager::Del_Emp() {
+  // 1. fisrt check the file exists
+  if (this->m_FileIsEmpty) {
+    cout << "file does not exist " << endl;
+    return;
+  } else {  // 2.remove the selected ID if exists, else print the "not find"
+    // message
+    cout << "Please the ID the employee to be deleted: ";
+    int id = 0;
+    cin >> id;
+    size_t index = this->IsExist(id);
+    if (index == -1) {
+      cout << "Delete failed. The employee does not exist!" << endl;
+    } else {
+      for (size_t i = index; i < (this->m_EmpNum - 1); i++) {
+        this->m_EmpArray[i] = this->m_EmpArray[i + 1];
+      }
+      this->m_EmpNum--;
+      // update the data into empfile.txt
+      this->save();
+      cout << "Delete the employee succeed" << endl;
+    }
+  }
+  cout << "Press any key and enter to the main menu" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+};
+// check whether the employee exists, and return his ID
+int EmployeeManager::IsExist(int ID) {
+  int index = -1;
+  for (size_t i = 0; i < this->m_EmpNum; i++) {
+    if (ID == this->m_EmpArray[i]->m_ID) {
+      index = i;
+      break;
+    }
+  }
+  return index;
+};

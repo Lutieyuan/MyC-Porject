@@ -43,6 +43,7 @@ int main() {
         em.Show_Emp();
         break;
       case 3:  // delete employee
+        em.Del_Emp();
         break;
       case 4:  // modify employee
         break;

@@ -35,4 +35,8 @@ class EmployeeManager {
   void init_Emp();
   // show the employee
   void Show_Emp();
+  // delete the Emp by ID
+  void Del_Emp();
+  // check whether the employee exists, and return his ID
+  int IsExist(int ID);
 };
