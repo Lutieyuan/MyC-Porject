@@ -45,4 +45,6 @@ class EmployeeManager {
   void Find_Emp();
   // sort the employee by ID
   void Sort_Emp();
+  // clean the empFile
+  void Clean_File();
 };

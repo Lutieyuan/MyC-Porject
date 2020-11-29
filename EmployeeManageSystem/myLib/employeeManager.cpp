@@ -64,8 +64,15 @@ void EmployeeManager::ExitSystem() {
 
 EmployeeManager::~EmployeeManager() {
   if (this->m_EmpArray != NULL) {
+    for (size_t i = 0; i < this->m_EmpNum; i++) {
+      if (this->m_EmpArray[i] != NULL) {
+        delete this->m_EmpArray[i];
+      }
+    }
     delete[] this->m_EmpArray;
     this->m_EmpArray = NULL;
+    this->m_EmpNum = 0;
+    this->m_FileIsEmpty = true;
   }
 }
 
@@ -222,7 +229,6 @@ void EmployeeManager::Del_Emp() {
   // 1. fisrt check the file exists
   if (this->m_FileIsEmpty) {
     cout << "The file does not exist or is empty" << endl;
-    return;
   } else {  // 2.remove the selected ID if exists, else print the "not find"
     // message
     cout << "Please the ID the employee to be deleted: ";
@@ -317,7 +323,6 @@ void EmployeeManager::Mod_Emp() {
 void EmployeeManager::Find_Emp() {
   if (this->m_FileIsEmpty) {
     cout << "The file does not exist or is empty" << endl;
-    return;
   } else {
     cout << "Please select the key to find:" << endl
          << "1. By ID" << endl
@@ -367,7 +372,10 @@ void EmployeeManager::Find_Emp() {
 void EmployeeManager::Sort_Emp() {
   if (this->m_FileIsEmpty) {
     cout << "The file does not exist or is empty" << endl;
-    return;
+    cout << "Press any key and enter to the main menu" << endl;
+    string a;
+    cin >> a;
+    system("clear");
   } else {
     cout << "Please select the sort type:" << endl
          << "1. sort ID by increasing" << endl
@@ -396,3 +404,33 @@ void EmployeeManager::Sort_Emp() {
     this->Show_Emp();
   }
 }
+
+void EmployeeManager::Clean_File() {
+  if (this->m_FileIsEmpty) {
+    cout << "The file does not exist or is already empty" << endl;
+  } else {
+    cout << "Are you sure to clean the file[yes/no]: ";
+    std::string flag;
+    cin >> flag;
+    if (flag == "yes") {
+      ofstream ofs(FILENAME, ios::trunc);
+      ofs.close();
+      for (size_t i = 0; i < this->m_EmpNum; i++) {
+        // delete each object in the stack
+        if (this->m_EmpArray[i] != NULL) {
+          delete this->m_EmpArray[i];
+          this->m_EmpArray[i] = NULL;
+        }
+      }
+      delete[] this->m_EmpArray;
+      this->m_EmpArray = NULL;
+      this->m_EmpNum = 0;
+      this->m_FileIsEmpty = true;
+      cout << "Clean the EmpFile succeed!" << endl;
+    }
+  }
+  cout << "Press any key and enter to the main menu" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+};

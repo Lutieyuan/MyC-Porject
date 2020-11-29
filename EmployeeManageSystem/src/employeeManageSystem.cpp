@@ -55,6 +55,7 @@ int main() {
         em.Sort_Emp();
         break;
       case 7:  // empty files
+        em.Clean_File();
         break;
       default:
         system("clear");
