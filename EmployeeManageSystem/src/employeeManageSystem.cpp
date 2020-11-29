@@ -46,6 +46,7 @@ int main() {
         em.Del_Emp();
         break;
       case 4:  // modify employee
+        em.Mod_Emp();
         break;
       case 5:  // search employee
         break;

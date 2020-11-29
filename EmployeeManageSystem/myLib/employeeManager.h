@@ -39,4 +39,6 @@ class EmployeeManager {
   void Del_Emp();
   // check whether the employee exists, and return his ID
   int IsExist(int ID);
+  // modify the Emp by ID
+  void Mod_Emp();
 };

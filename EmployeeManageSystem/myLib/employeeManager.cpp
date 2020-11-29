@@ -216,7 +216,7 @@ void EmployeeManager::Show_Emp() {
 void EmployeeManager::Del_Emp() {
   // 1. fisrt check the file exists
   if (this->m_FileIsEmpty) {
-    cout << "file does not exist " << endl;
+    cout << "The file does not exist or is empty" << endl;
     return;
   } else {  // 2.remove the selected ID if exists, else print the "not find"
     // message
@@ -252,3 +252,59 @@ int EmployeeManager::IsExist(int ID) {
   }
   return index;
 };
+
+void EmployeeManager::Mod_Emp() {
+  // check the file exist
+  if (this->m_FileIsEmpty) {
+    cout << "The file does not exist or is empty" << endl;
+  } else {
+    cout << "Please type in the ID to be modified: ";
+    int ID;
+    cin >> ID;
+    int index = this->IsExist(ID);
+    if (index == -1) {
+      cout << "Modify failed! The person does not exist" << endl;
+
+    } else {
+      delete this->m_EmpArray[index];
+      // Here delete the pointer for the reason that the poniter arry hold
+      // different kind of object(Worker, manager, and boss). So we'd better not
+      // directly overwrite the child's  member with its parent's member
+      cout << "Find the employe with ID: " << ID
+           << ". Please type in the new ID: ";
+      int newID;
+      cin >> newID;
+      cout << "Please type in the new name: ";
+      std::string newName;
+      cin >> newName;
+      cout << "Please select the new department of the employee: " << endl
+           << "1. Worker" << endl
+           << "2. Manager" << endl
+           << "3. Boss" << endl;
+      int newDepID;
+      cin >> newDepID;
+      Employee* employee = NULL;
+      switch (newDepID) {
+        case 1:
+          employee = new Worker(newID, newName, newDepID);
+          break;
+        case 2:
+          employee = new Manager(newID, newName, newDepID);
+          break;
+        case 3:
+          employee = new Boss(newID, newName, newDepID);
+          break;
+        default:
+          break;
+      }
+      this->m_EmpArray[index] = employee;
+      // this->Show_Emp();
+      cout << "Modify the employee succeed" << endl;
+    }
+    this->save();
+  }
+  cout << "Press any key and enter to the main menu" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+}
