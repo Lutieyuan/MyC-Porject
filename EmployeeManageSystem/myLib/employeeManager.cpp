@@ -28,6 +28,7 @@ EmployeeManager::EmployeeManager() {
   size_t num = this->get_EmpNum();
   cout << "The number of employeese: " << num << endl;
   this->m_EmpNum = num;
+  this->m_FileIsEmpty = false;
   // establish the memory (equals to declare an array)
   this->m_EmpArray = new Employee*[num];
   // store the information of the file into the array
@@ -194,4 +195,19 @@ void EmployeeManager::init_Emp() {
     index++;
   }
   ifs.close();
+};
+
+void EmployeeManager::Show_Emp() {
+  // Check whether the file is empty
+  if (this->m_FileIsEmpty) {
+    cout << "The file does not exist or hold no record!" << endl;
+  } else {
+    for (size_t i = 0; i < this->m_EmpNum; i++) {
+      this->m_EmpArray[i]->ShowInfo();
+    }
+  }
+  cout << "Press any key and enter key to the main menu" << endl;
+  std::string a;
+  cin >> a;
+  system("clear");
 }

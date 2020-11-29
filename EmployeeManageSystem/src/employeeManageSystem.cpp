@@ -40,6 +40,7 @@ int main() {
         em.Add_Emp();
         break;
       case 2:  // show employee
+        em.Show_Emp();
         break;
       case 3:  // delete employee
         break;

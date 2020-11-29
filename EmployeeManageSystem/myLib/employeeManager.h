@@ -33,4 +33,6 @@ class EmployeeManager {
   size_t get_EmpNum();
   // init the Emp
   void init_Emp();
+  // show the employee
+  void Show_Emp();
 };
