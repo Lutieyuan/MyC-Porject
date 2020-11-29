@@ -176,7 +176,7 @@ void EmployeeManager::init_Emp() {
   int ID, DepID;
   int index = 0;
   while (ifs >> ID && ifs >> name && ifs >> DepID) {
-    Employee* employee = NULL;
+    Employee* employee = NULL;  // declare
     switch (DepID) {
       case 1:
         employee = new Worker(ID, name, DepID);
@@ -190,7 +190,7 @@ void EmployeeManager::init_Emp() {
       default:
         break;
     }
-    this->m_EmpArray[index] = employee;
+    this->m_EmpArray[index] = employee;  // init
     index++;
   }
   ifs.close();
