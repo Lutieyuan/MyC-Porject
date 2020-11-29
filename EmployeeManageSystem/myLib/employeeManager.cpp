@@ -92,6 +92,11 @@ void EmployeeManager::Add_Emp() {
 
       cout << "Please input the ID of " << i + 1 << " th employee: ";
       cin >> ID;
+      while (this->IsExist(ID) != -1) {
+        cout << "The ID has alread used in the existing system. Please choose "
+                "another ID: ";
+        cin >> ID;
+      }
       cout << "Please input the name of " << i + 1 << " th employee: ";
       cin >> name;
       cout << "Please Select the Department of " << i + 1 << " th employee "
@@ -307,4 +312,87 @@ void EmployeeManager::Mod_Emp() {
   string a;
   cin >> a;
   system("clear");
+}
+
+void EmployeeManager::Find_Emp() {
+  if (this->m_FileIsEmpty) {
+    cout << "The file does not exist or is empty" << endl;
+    return;
+  } else {
+    cout << "Please select the key to find:" << endl
+         << "1. By ID" << endl
+         << "2. By name" << endl;
+    int select = 0;
+    cin >> select;
+    if (select == 1) {
+      cout << "Please type in the ID of employee to be found: ";
+      int ID;
+      cin >> ID;
+      int index = this->IsExist(ID);
+      if (index != -1) {
+        cout << "Find the employ with ID: " << ID << " success!" << endl;
+        cout << "The detail information of the employee are list below" << endl;
+        this->m_EmpArray[index]->ShowInfo();
+      } else {
+        cout << "Find the employee with ID " << ID
+             << " failed. Please check the ID!" << endl;
+      }
+    } else if (select == 2) {
+      cout << "Please type in the name of the employee need to be found: ";
+      std::string name;
+      cin >> name;
+      bool findFlag = false;
+      for (size_t i = 0; i < this->m_EmpNum; i++) {
+        if (this->m_EmpArray[i]->m_name == name) {
+          cout << "Find the employee with name: " << name << endl
+               << "The detail information of the employee is list below"
+               << endl;
+          this->m_EmpArray[i]->ShowInfo();
+          findFlag = true;
+          // break;
+        }
+      }
+      if (!findFlag) {
+        cout << "Find the employee with name failed. No such person with name "
+             << name << endl;
+      }
+    }
+  }
+  cout << "Press any key and enter to the main menu" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+}
+
+void EmployeeManager::Sort_Emp() {
+  if (this->m_FileIsEmpty) {
+    cout << "The file does not exist or is empty" << endl;
+    return;
+  } else {
+    cout << "Please select the sort type:" << endl
+         << "1. sort ID by increasing" << endl
+         << "2. sort ID by decreasing" << endl;
+    int select = 0;
+    cin >> select;
+
+    for (size_t i = 0; i < this->m_EmpNum; i++) {
+      int minOrMax = i;
+      for (size_t j = i + 1; j < this->m_EmpNum; j++) {
+        if (select == 1) {
+          if (this->m_EmpArray[minOrMax]->m_ID > this->m_EmpArray[j]->m_ID)
+            minOrMax = j;
+        } else if (select == 2) {
+          if (this->m_EmpArray[minOrMax]->m_ID < this->m_EmpArray[j]->m_ID)
+            minOrMax = j;
+        }
+      }
+      //
+      Employee* emp_temp = this->m_EmpArray[i];
+      this->m_EmpArray[i] = this->m_EmpArray[minOrMax];
+      this->m_EmpArray[minOrMax] = emp_temp;
+    }
+    cout << "Sort the employee by ID finished!" << endl;
+    this->save();
+    this->Show_Emp();
+  }
 }

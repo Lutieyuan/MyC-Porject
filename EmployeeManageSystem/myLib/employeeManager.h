@@ -41,4 +41,8 @@ class EmployeeManager {
   int IsExist(int ID);
   // modify the Emp by ID
   void Mod_Emp();
+  // find the employee by ID or name
+  void Find_Emp();
+  // sort the employee by ID
+  void Sort_Emp();
 };

@@ -49,8 +49,10 @@ int main() {
         em.Mod_Emp();
         break;
       case 5:  // search employee
+        em.Find_Emp();
         break;
       case 6:  // sort employee
+        em.Sort_Emp();
         break;
       case 7:  // empty files
         break;
