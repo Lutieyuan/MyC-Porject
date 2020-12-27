@@ -1,6 +1,9 @@
 #include "speechManager.h"
 
-SpeechManager::SpeechManager() {}
+SpeechManager::SpeechManager() {
+  // init the speech competition
+  this->init_Speech();
+}
 
 SpeechManager::~SpeechManager() {}
 
@@ -22,4 +25,15 @@ void SpeechManager::exit_System() {
   cin >> a;
   system("clear");
   exit(0);
+}
+
+void SpeechManager::init_Speech() {
+  // set the container empty
+  this->v1.empty();
+  this->v2.empty();
+  this->vVictory.empty();
+  this->m_Speaker.empty();
+
+  // init the index of the speech epoch
+  this->m_Index = 1;
 }
