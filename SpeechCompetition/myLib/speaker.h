@@ -6,7 +6,14 @@ using namespace std;
 class Speaker {
  public:
   string GetName() { return this->m_Name; }
-  double* GetSocre() { return this->m_Score; }
+  double *GetSocre() { return this->m_Score; }
+  void SetName(const string &name) { this->m_Name = name; }
+  template <class T, int N>
+  void SetSocre(T (&score)[N]) {
+    for (int i = 0; i < N; i++) {
+      this->m_Score[i] = score[i];
+    }
+  }
 
  private:
   string m_Name;

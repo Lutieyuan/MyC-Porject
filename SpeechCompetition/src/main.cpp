@@ -9,6 +9,11 @@ using namespace std;
 int main() {
   // Create an object of speech manager
   SpeechManager sm;
+  //   for (map<int, Speaker>::iterator it = sm.m_Speaker.begin();
+  //        it != sm.m_Speaker.end(); it++) {
+  //     cout << "ID: " << it->first << " Name: " << it->second.GetName()
+  //          << " Score: " << it->second.GetSocre()[0] << endl;
+  //   }
 
   int choice = 0;  // save the input
   while (true) {

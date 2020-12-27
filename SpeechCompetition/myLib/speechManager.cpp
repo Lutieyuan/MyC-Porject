@@ -3,6 +3,8 @@
 SpeechManager::SpeechManager() {
   // init the speech competition
   this->init_Speech();
+  // create the speakers
+  this->create_Speaker();
 }
 
 SpeechManager::~SpeechManager() {}
@@ -36,4 +38,21 @@ void SpeechManager::init_Speech() {
 
   // init the index of the speech epoch
   this->m_Index = 1;
+}
+
+void SpeechManager::create_Speaker() {
+  string nameSeed = "ABCDEFGHIJKL";
+  for (int i = 0; i < nameSeed.size(); i++) {
+    string name = "Speaker_";
+    name = name + nameSeed[i];
+    // initialize each speaker
+    Speaker sp;
+    sp.SetName(name);
+    double init_score[2] = {0, 0};
+    sp.SetSocre(init_score);
+    // initialize the speaker's ID
+    this->v1.push_back(i + 1001);
+    // put the speaker into map with its ID
+    this->m_Speaker.insert(make_pair(i + 1001, sp));
+  }
 }

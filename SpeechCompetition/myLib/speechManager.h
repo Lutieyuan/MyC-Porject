@@ -15,6 +15,8 @@ class SpeechManager {
   ~SpeechManager();
   void show_Meun();
   void exit_System();
+  // create 12 speakers
+  void create_Speaker();
 
   // Initializ the container and the property
   void init_Speech();
