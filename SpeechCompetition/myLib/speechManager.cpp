@@ -14,3 +14,12 @@ void SpeechManager::show_Meun() {
   cout << "**************************************************" << endl;
   cout << endl;
 }
+
+void SpeechManager::exit_System() {
+  cout << "Welcome for the next time" << endl;
+  cout << "Press any key and \"Enter\" to exit" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+  exit(0);
+}
