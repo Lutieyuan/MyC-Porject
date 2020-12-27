@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../myLib/speechManager.h
+iostream
+-
+
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/src/main.cpp
+stdlib.h
+-
+iostream
+-
+speechManager.h
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/src/speechManager.h
+

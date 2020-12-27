@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/SpeechCompetition.dir/main.cpp.o  -o ../bin/SpeechCompetition ../myLib/libMyLib.a 

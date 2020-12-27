@@ -1,0 +1,8 @@
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/myLib/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/myLib/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/myLib/CMakeFiles/MyLib.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/src/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/src/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/SpeechCompetition/build/src/CMakeFiles/SpeechCompetition.dir

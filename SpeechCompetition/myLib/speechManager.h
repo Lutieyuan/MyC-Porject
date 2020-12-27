@@ -7,4 +7,5 @@ class SpeechManager {
  public:
   SpeechManager();
   ~SpeechManager();
-}
+  void show_Meun();
+};
