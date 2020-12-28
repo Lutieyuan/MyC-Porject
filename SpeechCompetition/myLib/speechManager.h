@@ -2,8 +2,11 @@
 #include <stdlib.h>
 
 #include <algorithm>
+#include <deque>
+#include <functional>
 #include <iostream>
 #include <map>
+#include <numeric>
 #include <vector>
 
 #include "speaker.h"
@@ -25,6 +28,8 @@ class SpeechManager {
   void startSpeech();
   // shuffle the order of giving speech
   void speechDraw();
+  // start the compete
+  void speechContest();
   // member property
   // speakers of the 1st Epoch
   vector<int> v1;

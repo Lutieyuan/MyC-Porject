@@ -14,6 +14,10 @@ class Speaker {
       this->m_Score[i] = score[i];
     }
   }
+  template <class T>
+  void SetEpochSocre(T score, int epoch) {
+    this->m_Score[epoch] = score;
+  }
 
  private:
   string m_Name;

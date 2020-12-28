@@ -75,9 +75,6 @@ void SpeechManager::speechDraw() {
     for_each(v2.begin(), v2.end(), intPrint2);
   }
   cout << endl << "-------------------" << endl;
-  string a;
-  cin >> a;
-  system("clear");
 }
 
 void SpeechManager::startSpeech() {
@@ -85,8 +82,81 @@ void SpeechManager::startSpeech() {
   // 1. draw
   this->speechDraw();
   // 2. compete
-
+  this->speechContest();
   // 3. show the upgrade result
 
   //
+}
+
+void SpeechManager::speechContest() {
+  cout << "The " << this->m_Index << "-th epoch start" << endl;
+  // An container to save the maping of the temp competing group and its score
+  multimap<double, int, greater<double> /* */>
+      groupScore;     // the <double,int,greater<double>> are correspoind to the
+                      // score, ID, and built-in functional sort order
+  int num = 0;        // the num of speakers in the current group
+  vector<int> v_Src;  // the container for the competing speakers
+  if (this->m_Index == 1) {
+    v_Src = this->v1;
+
+  } else {
+    v_Src = this->v2;
+  }
+  // visit every speaker to compete
+  for (vector<int>::iterator it = v_Src.begin(); it != v_Src.end(); it++) {
+    num++;
+    // each reviewer give the score of every speaker
+    deque<double> d;
+    for (int i = 0; i < 10; i++) {
+      double score = (rand() % 401 + 600) / 10.f;  // 600~1000
+      // cout << score << "\t";
+      d.push_back(score);
+    }
+    // cout << endl;
+    sort(d.begin(), d.end(),
+         greater<double>());  // sort the scores by built-in
+                              // functional greater<double>()
+    d.pop_back();             // remove the minimum score
+    d.pop_front();            // remove the maxmum score
+
+    double sum = accumulate(d.begin(), d.end(), 0.0f);  // sum the scores
+    double ave = sum / d.size();                        // get the average score
+
+    // assign the average score into the map
+    this->m_Speaker[*it].SetEpochSocre(ave, this->m_Index - 1);
+    // print the average score
+    // cout << "ID: " << *it << " Name: " << this->m_Speaker[*it].GetName()
+    //      << " Ave Score:" << this->m_Speaker[*it].GetSocre()[this->m_Index -
+    //      1]
+    //      << endl;
+
+    // save the average score and ID  in groupScore
+    groupScore.insert(make_pair(ave, *it));
+    // take the first three speakers of each group by average scores
+    if (num % 6 == 0) {  // seperate each group by mod 6
+      cout << "The " << num / 6 << "-th group scores:" << endl;
+      for (multimap<double, int, greater<double> /* */>::iterator it =
+               groupScore.begin();
+           it != groupScore.end(); it++) {
+        cout << "ID: " << it->second
+             << " Name: " << this->m_Speaker[it->second].GetName() << " Score: "
+             << this->m_Speaker[it->second].GetSocre()[this->m_Index - 1]
+             << endl;
+      }
+      // take in the first three speakers into the next epoch
+      int count = 0;
+      for (multimap<double, int, greater<double> /* */>::iterator it =
+               groupScore.begin();
+           it != groupScore.end() & count < 3; it++, count++) {
+        if (this->m_Index == 1) {
+          this->v2.push_back(it->second);
+        } else {
+          this->vVictory.push_back(it->second);
+        }
+      }
+      groupScore.clear();  // empty the temp score group
+      cout << endl;
+    }
+  }
+  cout << "-----The " << this->m_Index << "-th epoch finished------" << endl;
 }
