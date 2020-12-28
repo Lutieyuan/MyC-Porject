@@ -1,6 +1,7 @@
 #pragma once
 #include <stdlib.h>
 
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -20,6 +21,10 @@ class SpeechManager {
 
   // Initializ the container and the property
   void init_Speech();
+  // start the speech
+  void startSpeech();
+  // shuffle the order of giving speech
+  void speechDraw();
   // member property
   // speakers of the 1st Epoch
   vector<int> v1;

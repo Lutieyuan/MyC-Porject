@@ -22,6 +22,7 @@ int main() {
     cin >> choice;
     switch (choice) {
       case 1:  // Start the speech competition
+        sm.startSpeech();
         break;
       case 2:  // Look out the competition record
         break;

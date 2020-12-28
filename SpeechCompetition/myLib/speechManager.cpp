@@ -56,3 +56,37 @@ void SpeechManager::create_Speaker() {
     this->m_Speaker.insert(make_pair(i + 1001, sp));
   }
 }
+
+class intPrint1 {
+ public:
+  void operator()(int val) { cout << val << " "; };
+};
+void intPrint2(int val) { cout << val << " "; }
+
+void SpeechManager::speechDraw() {
+  cout << "The speakers of the " << this->m_Index << "-th epoch are drawing"
+       << endl;
+  cout << "The order of the darwing is following: " << endl;
+  if (this->m_Index == 1) {
+    random_shuffle(this->v1.begin(), this->v1.end());
+    for_each(v1.begin(), v1.end(), intPrint1());
+  } else {
+    random_shuffle(this->v2.begin(), this->v2.end());
+    for_each(v2.begin(), v2.end(), intPrint2);
+  }
+  cout << endl << "-------------------" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+}
+
+void SpeechManager::startSpeech() {
+  // ***** 1st epoch  *****
+  // 1. draw
+  this->speechDraw();
+  // 2. compete
+
+  // 3. show the upgrade result
+
+  //
+}
