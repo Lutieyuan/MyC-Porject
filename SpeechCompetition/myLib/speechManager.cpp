@@ -84,8 +84,22 @@ void SpeechManager::startSpeech() {
   // 2. compete
   this->speechContest();
   // 3. show the upgrade result
+  this->showScore();
 
-  //
+  // ***** 2nd epoch  *****
+  this->m_Index++;
+  this->speechDraw();
+  // 2. compete
+  this->speechContest();
+  // 3. show the upgrade result
+  this->showScore();
+  // save the contest to the record .csv
+  this->saveRecord();
+  cout << "The speech contest finished! " << endl;
+  cout << "Press any key and \"Enter\" to continue" << endl;
+  string a;
+  cin >> a;
+  system("clear");
 }
 
 void SpeechManager::speechContest() {
@@ -108,7 +122,8 @@ void SpeechManager::speechContest() {
     // each reviewer give the score of every speaker
     deque<double> d;
     for (int i = 0; i < 10; i++) {
-      double score = (rand() % 401 + 600) / 10.f;  // 600~1000
+      double score =
+          (rand() % 401 + 600) / 10.f;  // rand() % 401 + 600 = 600~1000
       // cout << score << "\t";
       d.push_back(score);
     }
@@ -159,4 +174,42 @@ void SpeechManager::speechContest() {
     }
   }
   cout << "-----The " << this->m_Index << "-th epoch finished------" << endl;
+}
+
+void SpeechManager::showScore() {
+  cout << "------------This is the " << this->m_Index
+       << "-th epoch result---------" << endl;
+  vector<int> v;
+  if (this->m_Index == 1) {
+    v = v2;
+  } else {
+    v = vVictory;
+  }
+
+  for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+    cout << "ID: " << *it << " Name: " << this->m_Speaker[*it].GetName()
+         << " Score: " << this->m_Speaker[*it].GetSocre()[this->m_Index - 1]
+         << endl;
+    ;
+  }
+  cout << endl << "Press any key and \"Enter\" to continue" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+  this->show_Meun();
+}
+
+void SpeechManager::saveRecord() {
+  ofstream ofs;
+  ofs.open("SpeechRecord.csv", ios::out | ios::app);
+
+  // save the record into the csv
+  for (vector<int>::iterator it = vVictory.begin(); it != vVictory.end();
+       it++) {
+    ofs << *it << "," << this->m_Speaker[*it].GetName() << ","
+        << this->m_Speaker[*it].GetSocre()[this->m_Index - 1] << ",";
+  }
+  cout << endl;
+  ofs.close();
+  cout << "The contest result has been recorded" << endl;
 }

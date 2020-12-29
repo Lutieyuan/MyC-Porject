@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <deque>
+#include <fstream>
 #include <functional>
 #include <iostream>
 #include <map>
@@ -30,6 +31,10 @@ class SpeechManager {
   void speechDraw();
   // start the compete
   void speechContest();
+  // show the score
+  void showScore();
+  // save the record
+  void saveRecord();
   // member property
   // speakers of the 1st Epoch
   vector<int> v1;
