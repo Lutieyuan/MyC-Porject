@@ -35,8 +35,10 @@ class SpeechManager {
   void showScore();
   // save the record
   void saveRecord();
-  // load and check out the record
+  // load out the record
   void loadRecord();
+  // show the record
+  void showRecord();
   // member property
   // speakers of the 1st Epoch
   vector<int> v1;

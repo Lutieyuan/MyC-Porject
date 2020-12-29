@@ -99,6 +99,7 @@ void SpeechManager::startSpeech() {
   this->saveRecord();
   cout << "The speech contest finished! " << endl;
   cout << "Press any key and \"Enter\" to continue" << endl;
+  this->m_Index = 1;
   string a;
   cin >> a;
   system("clear");
@@ -211,6 +212,7 @@ void SpeechManager::saveRecord() {
     ofs << *it << "," << this->m_Speaker[*it].GetName() << ","
         << this->m_Speaker[*it].GetSocre()[this->m_Index - 1] << ",";
   }
+  ofs << endl;
   cout << endl;
   ofs.close();
   cout << "The contest result has been recorded" << endl;
@@ -236,11 +238,10 @@ void SpeechManager::loadRecord() {
   // file exits and not empty
   this->fileIsEmpty = false;
   ifs.putback(ch);  // put back the readed chacter
-
+  int index = 0;
   string data;
   while (ifs >> data) {
     vector<string> v;  // save the each record
-    int index = 0;
     int pos = -1;
     int start = 0;
     while (true) {
@@ -261,4 +262,25 @@ void SpeechManager::loadRecord() {
   //      it != this->m_Record.end(); it++) {
   //   cout << "Epoch: " << it->first << " Score:" << it->second[2] << endl;
   // }
+}
+
+void SpeechManager::showRecord() {
+  loadRecord();  // refresh the container before showing
+  for (int i = 0; i < this->m_Record.size(); i++) {
+    cout << "------The " << i + 1 << "-th epoch------ " << endl
+         << "** Champion ID: " << this->m_Record[i][0]
+         << " Name: " << this->m_Record[i][1]
+         << " Score: " << this->m_Record[i][2] << endl
+         << "** Second ID: " << this->m_Record[i][3]
+         << " Name: " << this->m_Record[i][4]
+         << " Score: " << this->m_Record[i][5] << endl
+         << "** Third ID: " << this->m_Record[i][6]
+         << " Name: " << this->m_Record[i][7]
+         << " Score: " << this->m_Record[i][8] << endl;
+  }
+  cout << "------------------" << endl;
+  cout << "Press any key and \"Enter\" to continue" << endl;
+  string a;
+  cin >> a;
+  system("clear");
 }
