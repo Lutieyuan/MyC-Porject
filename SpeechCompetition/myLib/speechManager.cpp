@@ -5,6 +5,8 @@ SpeechManager::SpeechManager() {
   this->init_Speech();
   // create the speakers
   this->create_Speaker();
+  // load the record
+  this->loadRecord();
 }
 
 SpeechManager::~SpeechManager() {}
@@ -212,4 +214,51 @@ void SpeechManager::saveRecord() {
   cout << endl;
   ofs.close();
   cout << "The contest result has been recorded" << endl;
+}
+
+// load record
+void SpeechManager::loadRecord() {
+  ifstream ifs;
+  ifs.open("SpeechRecord.csv", ios::in);
+  if (!ifs.is_open()) {
+    this->fileIsEmpty = true;
+    cout << "Record file dosen't exist" << endl;
+    return;
+  }
+  // file empty
+  char ch;
+  ifs >> ch;
+  if (ifs.eof()) {
+    cout << "Record file is empty" << endl;
+    this->fileIsEmpty = true;
+    return;
+  }
+  // file exits and not empty
+  this->fileIsEmpty = false;
+  ifs.putback(ch);  // put back the readed chacter
+
+  string data;
+  while (ifs >> data) {
+    vector<string> v;  // save the each record
+    int index = 0;
+    int pos = -1;
+    int start = 0;
+    while (true) {
+      pos = data.find(",", start);
+      if (pos == -1) {
+        break;  //     "meet the end of the record!"
+      }
+      string temp = data.substr(start, pos - start);
+      v.push_back(temp);
+      start = pos + 1;
+    }
+    this->m_Record.insert(make_pair(index, v));
+    index++;
+  }
+  cout << endl;
+  ifs.close();
+  // for (map<int, vector<string> /* */>::iterator it = this->m_Record.begin();
+  //      it != this->m_Record.end(); it++) {
+  //   cout << "Epoch: " << it->first << " Score:" << it->second[2] << endl;
+  // }
 }

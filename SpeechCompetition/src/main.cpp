@@ -24,7 +24,8 @@ int main() {
       case 1:  // Start the speech competition
         sm.startSpeech();
         break;
-      case 2:  // Look out the competition record
+      case 2:  // Check out the competition record
+
         break;
       case 3:  // Empty the competition record
         break;

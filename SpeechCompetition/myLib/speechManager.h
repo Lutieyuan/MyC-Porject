@@ -35,6 +35,8 @@ class SpeechManager {
   void showScore();
   // save the record
   void saveRecord();
+  // load and check out the record
+  void loadRecord();
   // member property
   // speakers of the 1st Epoch
   vector<int> v1;
@@ -46,4 +48,8 @@ class SpeechManager {
   map<int, Speaker> m_Speaker;
   // save the current epoch
   int m_Index;
+  // the file empty flag
+  bool fileIsEmpty;
+  // an container for the recorded result
+  map<int, vector<string> /* */> m_Record;
 };
