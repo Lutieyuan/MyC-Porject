@@ -1,5 +1,6 @@
 
 
+#include <ctime>
 #include <iostream>
 
 #include "speechManager.h"
@@ -7,6 +8,8 @@
 using namespace std;
 
 int main() {
+  // add random seed
+  srand((unsigned int)time(NULL));
   // Create an object of speech manager
   SpeechManager sm;
   //   for (map<int, Speaker>::iterator it = sm.m_Speaker.begin();

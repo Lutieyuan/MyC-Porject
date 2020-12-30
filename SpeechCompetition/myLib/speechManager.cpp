@@ -33,10 +33,11 @@ void SpeechManager::exit_System() {
 
 void SpeechManager::init_Speech() {
   // set the container empty
-  this->v1.empty();
-  this->v2.empty();
-  this->vVictory.empty();
-  this->m_Speaker.empty();
+  this->v1.clear();
+  this->v2.clear();
+  this->vVictory.clear();
+  this->m_Speaker.clear();
+  this->m_Record.clear();
 
   // init the index of the speech epoch
   this->m_Index = 1;
@@ -97,6 +98,9 @@ void SpeechManager::startSpeech() {
   this->showScore();
   // save the contest to the record .csv
   this->saveRecord();
+  // Reset the speech contest config when the contest finished
+  this->init_Speech();
+  this->create_Speaker();
   cout << "The speech contest finished! " << endl;
   cout << "Press any key and \"Enter\" to continue" << endl;
   this->m_Index = 1;
@@ -216,6 +220,7 @@ void SpeechManager::saveRecord() {
   cout << endl;
   ofs.close();
   cout << "The contest result has been recorded" << endl;
+  this->fileIsEmpty = false;
 }
 
 // load record
@@ -224,14 +229,14 @@ void SpeechManager::loadRecord() {
   ifs.open("SpeechRecord.csv", ios::in);
   if (!ifs.is_open()) {
     this->fileIsEmpty = true;
-    cout << "Record file dosen't exist" << endl;
+    // cout << "Record file dosen't exist" << endl;
     return;
   }
   // file empty
   char ch;
   ifs >> ch;
   if (ifs.eof()) {
-    cout << "Record file is empty" << endl;
+    // cout << "Record file is empty" << endl;
     this->fileIsEmpty = true;
     return;
   }
@@ -265,20 +270,24 @@ void SpeechManager::loadRecord() {
 }
 
 void SpeechManager::showRecord() {
-  loadRecord();  // refresh the container before showing
-  for (int i = 0; i < this->m_Record.size(); i++) {
-    cout << "------The " << i + 1 << "-th epoch------ " << endl
-         << "** Champion ID: " << this->m_Record[i][0]
-         << " Name: " << this->m_Record[i][1]
-         << " Score: " << this->m_Record[i][2] << endl
-         << "** Second ID: " << this->m_Record[i][3]
-         << " Name: " << this->m_Record[i][4]
-         << " Score: " << this->m_Record[i][5] << endl
-         << "** Third ID: " << this->m_Record[i][6]
-         << " Name: " << this->m_Record[i][7]
-         << " Score: " << this->m_Record[i][8] << endl;
+  this->loadRecord();  // refresh the container before showing
+  if (this->fileIsEmpty) {
+    cout << "Record file is Empty or doen not exits" << endl;
+  } else {
+    for (int i = 0; i < this->m_Record.size(); i++) {
+      cout << "------The " << i + 1 << "-th epoch------ " << endl
+           << "** Champion ID: " << this->m_Record[i][0]
+           << " Name: " << this->m_Record[i][1]
+           << " Score: " << this->m_Record[i][2] << endl
+           << "** Second ID: " << this->m_Record[i][3]
+           << " Name: " << this->m_Record[i][4]
+           << " Score: " << this->m_Record[i][5] << endl
+           << "** Third ID: " << this->m_Record[i][6]
+           << " Name: " << this->m_Record[i][7]
+           << " Score: " << this->m_Record[i][8] << endl;
+    }
   }
-  cout << "------------------" << endl;
+
   cout << "Press any key and \"Enter\" to continue" << endl;
   string a;
   cin >> a;
