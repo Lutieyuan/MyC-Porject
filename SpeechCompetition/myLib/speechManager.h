@@ -39,6 +39,8 @@ class SpeechManager {
   void loadRecord();
   // show the record
   void showRecord();
+  // clear the record
+  void clearRecord();
   // member property
   // speakers of the 1st Epoch
   vector<int> v1;

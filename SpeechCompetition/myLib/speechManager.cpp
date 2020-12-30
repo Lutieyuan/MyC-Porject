@@ -293,3 +293,22 @@ void SpeechManager::showRecord() {
   cin >> a;
   system("clear");
 }
+
+void SpeechManager::clearRecord() {
+  cout << " Are you sure to clear the record?" << endl
+       << "1. yes" << endl
+       << "2. no" << endl;
+  int select;
+  cin >> select;
+  if (select == 1) {
+    ofstream ofs;
+    ofs.open("SpeechRecord.csv", ios::trunc);
+    ofs.clear();
+    this->init_Speech();
+    cout << "The record has been cleared!" << endl;
+  }
+  cout << "Press any key and \"Enter\" to continue" << endl;
+  string a;
+  cin >> a;
+  system("clear");
+}

@@ -31,6 +31,7 @@ int main() {
         sm.showRecord();
         break;
       case 3:  // Empty the competition record
+        sm.clearRecord();
         break;
       case 0:  // Exit the competition system
         sm.exit_System();
