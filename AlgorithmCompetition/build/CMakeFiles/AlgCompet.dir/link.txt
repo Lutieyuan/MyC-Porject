@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/AlgCompet.dir/src/main.cpp.o  -o AlgCompet -rdynamic 

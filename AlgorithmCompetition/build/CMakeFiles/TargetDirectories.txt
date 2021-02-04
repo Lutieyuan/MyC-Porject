@@ -1,0 +1,3 @@
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/AlgorithmCompetition/build/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/AlgorithmCompetition/build/CMakeFiles/edit_cache.dir
+/mnt/hgfs/ShareDir/code/Github/MyC-Porject/AlgorithmCompetition/build/CMakeFiles/AlgCompet.dir
